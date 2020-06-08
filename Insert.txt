@@ -1,0 +1,76 @@
+INSERT INTO Person VALUES('111110001', 'Luke', NULL, 'Hills', '12/04/1970', 'M', NULL, NULL);
+INSERT INTO Person VALUES('111110002', 'Valerie', NULL, 'Grange', '1/6/1974', 'F', NULL, NULL);
+INSERT INTO Person VALUES('111110003', 'Tyron', NULL, 'Jersey', '5/8/1988', 'M', NULL, NULL);
+INSERT INTO Person VALUES('111110004', 'Helen', NULL, 'Giles', '5/30/1990', 'F', NULL, NULL);
+INSERT INTO Person VALUES('111110005', 'John', NULL, 'Green', '8/12/1965', 'M', NULL, NULL);
+INSERT INTO Person VALUES('111110006', 'Alice', NULL, 'Woods', '12/15/1968', 'F', NULL, NULL);
+INSERT INTO Person VALUES('111110007', 'Oliver', NULL, 'Smith', '1/6/1974', 'M', NULL, NULL);
+INSERT INTO Person VALUES('111110008', 'Jane', NULL, 'Lewis', '2/2/1975', 'F', NULL, NULL);
+INSERT INTO Person VALUES('111110009', 'Jack', NULL, 'Hills', '6/8/1941', 'M', NULL, '9/2/2015');
+INSERT INTO Person VALUES('111110010', 'Ann', NULL, 'Crider', '11/3/1943', 'F', NULL, '7/1/2018');
+INSERT INTO Person VALUES('111110011', 'William', NULL, 'Jersey', '1/22/1999', 'M', NULL, NULL);
+INSERT INTO Person VALUES('111110012', 'Travis', NULL, 'Jersey', '12/7/2003', 'M', NULL, NULL);
+INSERT INTO Person VALUES('111110013', 'Alice', NULL, 'Green', '9/16/1994', 'F', NULL, NULL);
+INSERT INTO Person VALUES('111110014', 'Grace', NULL, 'Green', '3/22/1998', 'F', NULL, NULL);
+
+
+INSERT INTO Postal_Info VALUES('073078', 'Midwest', 'Ocklahoma', 'US');
+INSERT INTO Postal_Info VALUES('073080', 'Tulsa', 'Ocklahoma', 'US');
+INSERT INTO Postal_Info VALUES('073085', 'Norman', 'Ocklahoma', 'US');
+INSERT INTO Postal_Info VALUES('077001', 'Houston', 'Texas', 'US');
+INSERT INTO Postal_Info VALUES('077006', 'Dallas', 'Texas', 'US');
+INSERT INTO Postal_Info VALUES('V6H4G3', 'Burnaby', 'British Columbia', 'Canada');
+INSERT INTO Postal_Info VALUES('V6H2G2', 'Burnaby', 'British Columbia', 'Canada');
+INSERT INTO Postal_Info VALUES('V3L0A5', 'New Westminster', 'British Columbia', 'Canada');
+INSERT INTO Postal_Info VALUES('M4B1B5', 'Torronto', 'Ontario', 'Canada');
+INSERT INTO Postal_Info VALUES('K0A1K0', 'Ottawa', 'Ontario', 'Canada');
+
+
+INSERT INTO Address VALUES(1, '21-36 Pine st.', 'V6H4G3');
+INSERT INTO Address VALUES(2, '15-36 Pine st.', 'V6H4G3');
+INSERT INTO Address VALUES(3, '23-45 Scott rd.', 'V3L0A5');
+INSERT INTO Address VALUES(4, '15 Gilmore ave.', 'V6H2G2');
+INSERT INTO Address VALUES(5, '41 Hastings st.', 'M4B1B5');
+INSERT INTO Address VALUES(6, '44 Irmin st.', 'V6H4G3');
+INSERT INTO Address VALUES(7, '33 Abbot st.', 'V3L0A5');
+INSERT INTO Address VALUES(8, '67 Kings st.', 'V6H4G3');
+INSERT INTO Address VALUES(9, '14 Main st.', 'V3L0A5');
+
+
+INSERT INTO Institution VALUES(1, 6, 'Kings College', '4568971234');
+INSERT INTO Institution VALUES(2, 7, 'Clark College', '5668773334');
+
+INSERT INTO Company VALUES(1, 'Willey Inc.', '8974567890', 8);
+INSERT INTO Company VALUES(2, 'Gen Electric Inc.', '8974987822', 9);
+
+
+INSERT INTO Event VALUES('111110001', '5/5/2006', 'Won a lottery');
+INSERT INTO Event VALUES('111110005', '7/5/2012', 'Hosted enviroment protection event');
+INSERT INTO Event VALUES('111110007', '4/4/2004', 'Founded Charity Organization');
+
+
+INSERT INTO Residency VALUES('111110001', 1, '12/4/1970');
+INSERT INTO Residency VALUES('111110002', 1, '1/10/1994');
+INSERT INTO Residency VALUES('111110011', 1, '1/22/1999');
+INSERT INTO Residency VALUES('111110012', 1, '12/7/2003');
+
+
+INSERT INTO Education VALUES('111110001', 1, '9/1/1988', '5/30/1992', 'Bachelor', 4.5);
+INSERT INTO Education VALUES('111110002', 1, '9/1/1988', '5/30/1992', 'Bachelor', 4.8);
+
+INSERT INTO Job VALUES('111110001', 1, '2/1/1993', NULL, 'HR Assistant');
+INSERT INTO Job VALUES('111110002', 1, '5/1/1993', NULL, 'Logistics Specialist');
+
+
+INSERT INTO Person_Marries_Person VALUES('111110001', '111110002', '1/10/1994');
+INSERT INTO Person_Marries_Person VALUES('111110009', '111110010', '8/11/1967');
+
+
+INSERT INTO Person_Father_Person VALUES('111110009', '111110001');
+INSERT INTO Person_Father_Person VALUES('111110001', '111110011');
+INSERT INTO Person_Father_Person VALUES('111110001', '111110012');
+
+
+INSERT INTO Person_Mother_Person VALUES('111110010', '111110001');
+INSERT INTO Person_Mother_Person VALUES('111110002', '111110011');
+INSERT INTO Person_Mother_Person VALUES('111110002', '111110012');

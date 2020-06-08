@@ -1,0 +1,133 @@
+CREATE TABLE Person(
+    SSN 	CHAR(9),
+    FName	VARCHAR(20)	NOT NULL,
+    MName	VARCHAR(20),
+    LName 	VARCHAR(20)	NOT NULL,
+    Dob 	DATE		NOT NULL,
+    Gender 	CHAR		NOT NULL,
+    Picture	VARCHAR(150),
+    Dod 	DATE,
+    PRIMARY KEY(SSN)
+  );
+
+CREATE TABLE Postal_Info(
+    Postal_Code		CHAR(6),
+    City 		VARCHAR(15)	NOT NULL,
+    State_Province	VARCHAR(20),
+    Country 		VARCHAR(20)	NOT NULL,
+    PRIMARY KEY(Postal_Code)
+);
+
+CREATE TABLE Address(
+    Address_No		INT,
+    Address_Line	VARCHAR(15),
+    Postal_Code 	CHAR(6),
+    PRIMARY KEY(Address_No),
+    FOREIGN KEY(Postal_Code) REFERENCES Postal_Info(Postal_Code) ON DELETE CASCADE    
+);
+
+CREATE TABLE Institution(
+    Inst_No		INT,
+    Inst_Address_No	INT,
+    Inst_Name 		VARCHAR(15)	NOT NULL	UNIQUE,
+    Inst_Contact_No 	VARCHAR(15)	NOT NULL,
+    PRIMARY KEY(Inst_No),
+    FOREIGN KEY(Inst_Address_No) REFERENCES Address(Address_No) ON DELETE CASCADE
+);
+
+CREATE TABLE Company(
+    Comp_No 		INT,
+    Comp_Name 		VARCHAR(20)	NOT NULL 	UNIQUE,
+    Comp_Contact_No 	VARCHAR(15)	NOT NULL,
+    Comp_Address_No 	INT,
+    PRIMARY KEY(Comp_No),
+    FOREIGN KEY(Comp_Address_No) REFERENCES ADDRESS(Address_No) ON DELETE CASCADE
+    
+);
+
+
+
+CREATE TABLE Event(
+    Person_SSN	CHAR(9),
+    Event_Date 	DATE,
+    Event_Desc 	VARCHAR(200)	NOT NULL,
+    PRIMARY KEY(Person_SSN,Event_Date),
+    FOREIGN KEY(Person_SSN) REFERENCES Person(SSN) ON DELETE CASCADE
+    );
+
+
+
+
+CREATE TABLE Residency(
+    Person_SSN 	CHAR(9),
+    Address_No 	INT,
+    Entry_Date	Date,
+    PRIMARY KEY(Person_SSN,Entry_Date),
+    FOREIGN KEY(Person_SSN) REFERENCES Person(SSN) ON DELETE CASCADE,
+    FOREIGN KEY(Address_No) REFERENCES Address(Address_No) ON DELETE CASCADE
+);
+
+CREATE TABLE Education(
+    Person_SSN 	CHAR(9),
+    Inst_No 	INT,
+    Start_Date 	DATE		NOT NULL,
+    Completion_Date DATE,
+    Degree 	VARCHAR(10)	NOT NULL,
+    GPA 	DECIMAL(3,2),
+    PRIMARY KEY(Person_SSN,Start_Date),
+    FOREIGN KEY(Person_SSN) REFERENCES Person(SSN) ON DELETE CASCADE,
+    FOREIGN KEY(Inst_No) REFERENCES Institution(Inst_No) ON DELETE CASCADE
+   
+);
+
+CREATE TABLE Job(
+    Person_SSN 	CHAR(9),
+    Comp_No 	INT,
+    Start_Date 	DATE		NOT NULL,
+    End_Date 	DATE,
+    Position 	CHAR(20)	NOT NULL,
+    PRIMARY KEY(Person_SSN, Start_Date),
+    FOREIGN KEY(Person_SSN) REFERENCES Person(SSN) ON DELETE CASCADE,
+    FOREIGN KEY(Comp_No) REFERENCES Company(Comp_No) ON DELETE CASCADE
+   );
+
+CREATE TABLE Person_Marries_Person(
+    P1_SSN CHAR(9),
+    P2_SSN CHAR(9),
+    M_Date DATE	NOT NULL,
+    PRIMARY KEY(P1_SSN,P2_SSN),
+    FOREIGN KEY(P1_SSN) REFERENCES Person(SSN) ON DELETE CASCADE,
+    FOREIGN KEY(P2_SSN) REFERENCES Person(SSN) ON DELETE CASCADE    
+);
+
+CREATE TABLE Person_Divorces_Person(
+    P1_SSN CHAR(9),
+    P2_SSN CHAR(9),
+    D_Date DATE	NOT NULL,
+    PRIMARY KEY(P1_SSN,P2_SSN),
+    FOREIGN KEY(P1_SSN) REFERENCES Person(SSN) ON DELETE CASCADE,
+    FOREIGN KEY(P2_SSN) REFERENCES Person(SSN) ON DELETE CASCADE 
+);
+
+CREATE TABLE Person_Father_Person(
+    P1_SSN CHAR(9),
+    P2_SSN CHAR(9),
+    PRIMARY KEY(P1_SSN,P2_SSN),
+    FOREIGN KEY(P1_SSN) REFERENCES Person(SSN) ON DELETE CASCADE,
+    FOREIGN KEY(P2_SSN) REFERENCES Person(SSN) ON DELETE CASCADE
+);
+
+CREATE TABLE Person_Mother_Person(
+    P1_SSN CHAR(9),
+    P2_SSN CHAR(9),   
+    PRIMARY KEY(P1_SSN,P2_SSN),
+    FOREIGN KEY(P1_SSN) REFERENCES Person(SSN) ON DELETE CASCADE,
+    FOREIGN KEY(P2_SSN) REFERENCES Person(SSN) ON DELETE CASCADE
+);
+
+CREATE VIEW view_person_father (PERSON_SSN, PERSON_FNAME, PERSON_LNAME,FATHER_SSN,FATHER_FNAME,FATHER_LNAME)
+	AS 
+SELECT person_father.PERSON_SSN, person_father.PERSON_FNAME, person_father.PERSON_LNAME, person_father.FATHER_SSN,
+father.FNAME as FATHER_NAME, father.LNAME as FATHER_LNAME FROM person father,
+(SELECT person.SSN as PERSON_SSN,person.FNAME as PERSON_FNAME,person.LNAME as PERSON_LNAME,person_father_person.P2_SSN as FATHER_SSN
+ FROM person,person_father_person where person.SSN = person_father_person.P1_SSN)person_father where person_father.FATHER_SSN = father.SSN;

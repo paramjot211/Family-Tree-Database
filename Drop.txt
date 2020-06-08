@@ -1,0 +1,14 @@
+DROP TABLE  Event;
+DROP TABLE  Residency;
+DROP TABLE  Education;
+DROP TABLE  Job;
+DROP TABLE  Person_Marries_Person;
+DROP TABLE  Person_Divorces_Person;
+DROP TABLE  Person_Father_Person;
+DROP TABLE  Person_Mother_Person;
+DROP TABLE  Institution;
+DROP TABLE  Company;
+DROP TABLE  Person;
+DROP TABLE  Address;
+DROP TABLE  Postal_Info;
+DROP VIEW view_person_father;
